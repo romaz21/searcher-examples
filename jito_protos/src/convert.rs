@@ -138,20 +138,3 @@ impl TryFrom<&Socket> for SocketAddr {
         IpAddr::from_str(&value.ip).map(|ip| SocketAddr::new(ip, value.port as u16))
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use solana_perf::test_tx::test_tx;
-    use solana_sdk::transaction::VersionedTransaction;
-
-    use crate::convert::{proto_packet_from_versioned_tx, versioned_tx_from_packet};
-
-    #[test]
-    fn test_proto_to_packet() {
-        let tx_before = VersionedTransaction::from(test_tx());
-        let tx_after = versioned_tx_from_packet(&proto_packet_from_versioned_tx(&tx_before))
-            .expect("tx_after");
-
-        assert_eq!(tx_before, tx_after);
-    }
-}

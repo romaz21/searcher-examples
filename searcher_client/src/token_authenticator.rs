@@ -121,7 +121,7 @@ impl ClientInterceptor {
                                 true
                             }
                         };
-                        datapoint_info!("searcher-full-auth", ("is_error", is_error, bool));
+                        // datapoint_info!("searcher-full-auth", ("is_error", is_error, bool));
                     }
                     // re-up the access token if it expires soon
                     (_, true) => {
@@ -141,7 +141,7 @@ impl ClientInterceptor {
                             }
                         };
 
-                        datapoint_info!("searcher-refresh-auth", ("is_error", is_error, bool));
+                        // datapoint_info!("searcher-refresh-auth", ("is_error", is_error, bool));
                     }
                     _ => {
                         sleep(Duration::from_secs(60)).await;
